@@ -9,7 +9,6 @@ public class Main {
     ListaInvertida listanome;
     ListaInvertida listadia;
     ListaInvertida listadiretor;
-    ListaInvertida listaavaliacao;
     Scanner console = new Scanner(System.in);
     
 
@@ -21,8 +20,7 @@ public class Main {
       listanome = new ListaInvertida(4, "dados/dicionario.listainv.db", "dados/blocos.listainv.db");
       listadia = new ListaInvertida(4, "dados/dicionario2.listainv.db", "dados/blocos2.listainv.db");
       listadiretor = new ListaInvertida(4, "dados/dicionario3.listainv.db", "dados/blocos3.listainv.db");
-      listaavaliacao = new ListaInvertida(4, "dados/dicionario4.listainv.db", "dados/blocos4.listainv.db");
-
+      
       int opcao;
       do {
         System.out.println("\n\n-------------------------------");
@@ -44,21 +42,18 @@ public class Main {
         switch (opcao) {
           case 1: {
             
-            System.out.println( "Digite: nome do filme, dia de lançamento, diretor(a) e avaliação(0-10)");
+            System.out.println( "Digite: nome do filme, dia de lançamento e diretor(a):\n");
             String nome = console.nextLine();
             int dia = Integer.valueOf(console.nextLine());
             String diretor = console.nextLine();
-            double avaliacao = Double.valueOf(console.nextLine());
-            Filme livro1 = new Filme(-1, nome, dia, diretor, avaliacao);
+            Filme livro1 = new Filme(-1, nome, dia, diretor);
             int dado = arquivoFilmes.create(livro1);
             listanome.create(nome, dado);
             listadia.create(String.valueOf(dia), dado);
             listadiretor.create(diretor, dado);
-            listaavaliacao.create(String.valueOf(avaliacao), dado);
-            listanome.print("NOME");
-            listadia.print("DIA");
-            listadiretor.print("DIRETOR");
-            listaavaliacao.print("AVALIAÇÃO");
+            //listanome.print("NOME");
+            //listadia.print("DIA");
+            //listadiretor.print("DIRETOR");
           
           }
             break;
@@ -72,21 +67,41 @@ public class Main {
               System.out.print(dados[i] + " ");
           }
             break;
-          case 3: {
-            System.out.println("\nEXCLUSÃO");
-            System.out.print("Chave: ");
-            String chave = console.nextLine();
-            System.out.print("Dado: ");
-            int dado = Integer.valueOf(console.nextLine());
-            lista.delete(chave, dado);
-            lista.print();
+          */case 3: {
+            System.out.print("Digite: nome do filme, dia de lançamento e diretor(a):\n");
+            String nome = console.nextLine();
+            int dia = Integer.valueOf(console.nextLine());
+            String diretor = console.nextLine();
+
+            
+            int [] ids1 = listanome.read(nome);
+            int [] ids2 = listadia.read(String.valueOf(dia));
+            int [] ids3 = listadiretor.read(diretor);
+
+            int dado = intersecao(ids1, ids2, ids3);
+            if (dado == -1) {
+              System.out.println("Filme não encontrado");
+              break;
+            }
+
+            listanome.delete(nome, dado);
+            listadia.delete(String.valueOf(dia), dado);
+            listadiretor.delete(diretor, dado);
+            //arquivoFilmes.delete(dado);
+
+            listanome.print("NOME");
+            listadia.print("DIA");
+            listadiretor.print("DIRETOR");
+            
           }
             break;
           case 4: {
-            lista.print();
+            listanome.print("NOME");
+            listadia.print("DIA");
+            listadiretor.print("DIRETOR");
           }
             break;
-         */ case 0:
+          case 0:
             break;
           default:
             System.out.println("Opção inválida");
@@ -97,5 +112,17 @@ public class Main {
       e.printStackTrace();
     }
     console.close();
+  }
+  public static int intersecao(int []a, int [] b, int [] c) {
+    for (int i = 0; i < a.length; i++) {
+      for (int j = 0; j < b.length; j++) {
+        for (int k = 0; k < c.length; k++) {
+          if (a[i] == b[j] && b[j] == c[k])
+            return a[i];
+        }
+      }
+    }
+    return -1;
+  
   }
 }

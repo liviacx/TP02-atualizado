@@ -5,14 +5,12 @@ public class Filme implements Registro {
     private String nome;
     private int diaLancamento;
     private String diretor;
-    private double avaliacao;
 
-    public Filme(int id, String nome, int diaLancamento, String diretor, double avaliacao) {
+    public Filme(int id, String nome, int diaLancamento, String diretor) {
         this.id = id;
         this.nome = nome;
         this.diaLancamento = diaLancamento;
         this.diretor = diretor;
-        this.avaliacao = avaliacao;
     }
 
     public Filme() {}
@@ -50,24 +48,17 @@ public class Filme implements Registro {
         this.diretor = diretor;
     }
 
-    public double getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(double avaliacao) {
-        this.avaliacao = avaliacao;
-    }
+    
 
     // Métodos para definir e obter os atributos do filme
     public void setFilme() {
-        setFilme("", -1, "", -1);
+        setFilme("", -1, "");
     }
 
-    public void setFilme(String nome, int diaLancamento, String diretor, double avaliacao) {
+    public void setFilme(String nome, int diaLancamento, String diretor) {
         this.nome = nome;
         this.diaLancamento = diaLancamento;
         this.diretor = diretor;
-        this.avaliacao = avaliacao;
     }
 
     // Implementação dos métodos da interface Registro
@@ -79,7 +70,6 @@ public class Filme implements Registro {
         dataOutput.writeUTF(nome);
         dataOutput.writeInt(diaLancamento);
         dataOutput.writeUTF(diretor);
-        dataOutput.writeDouble(avaliacao);
         return byteArrayOutput.toByteArray();
     }
 
@@ -91,7 +81,6 @@ public class Filme implements Registro {
         nome = dataInput.readUTF();
         diaLancamento = dataInput.readInt();
         diretor = dataInput.readUTF();
-        avaliacao = dataInput.readDouble();
     }
 
     @Override
