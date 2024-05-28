@@ -36,9 +36,8 @@ public class Main {
         } catch (NumberFormatException e) {
           opcao = -1;
         }
-        File file = new File("dados/filmes.db");
         Arquivo<Filme> arquivoFilmes;
-        arquivoFilmes = new Arquivo<>("filmes.db", Filme.class.getConstructor());
+        arquivoFilmes = new Arquivo<>("dados/filmes.db", Filme.class.getConstructor());
         switch (opcao) {
           case 1: {
             
@@ -57,17 +56,34 @@ public class Main {
           
           }
             break;
-          /*case 2: {
-            System.out.println("\nBUSCA");
-            System.out.print("Chave: ");
-            String chave = console.nextLine();
-            int[] dados = lista.read(chave);
+          case 2: {
+            int [] dados;
+            System.out.print("Digite qual tipo de chave quer pesquisar(nome, dia ou diretor):\n");
+            String tipo = console.nextLine();
+            if (tipo.equals("nome")){
+              System.out.print("Digite o nome do filme:\n");
+              String chave = console.nextLine();
+              dados = listanome.read(chave);
+            } else if (tipo.equals("dia")){
+              System.out.print("Digite o dia de lançamento do filme:\n");
+              int aux = console.nextInt();
+              String chave = String.valueOf(aux);
+              dados = listadia.read(chave);
+            } else if (tipo.equals("diretor")){
+              System.out.print("Digite o diretor do filme:\n");
+              String chave = console.nextLine();
+              dados = listadiretor.read(chave);
+            }else{
+              System.out.println("Tipo inválido");
+              break;
+            }
+            
             System.out.print("Dado: ");
             for (int i = 0; i < dados.length; i++)
               System.out.print(dados[i] + " ");
           }
             break;
-          */case 3: {
+          case 3: {
             System.out.print("Digite: nome do filme, dia de lançamento e diretor(a):\n");
             String nome = console.nextLine();
             int dia = Integer.valueOf(console.nextLine());
@@ -87,11 +103,11 @@ public class Main {
             listanome.delete(nome, dado);
             listadia.delete(String.valueOf(dia), dado);
             listadiretor.delete(diretor, dado);
-            //arquivoFilmes.delete(dado);
+            arquivoFilmes.delete(dado);
 
-            listanome.print("NOME");
-            listadia.print("DIA");
-            listadiretor.print("DIRETOR");
+            //listanome.print("NOME");
+            //listadia.print("DIA");
+            //listadiretor.print("DIRETOR");
             
           }
             break;

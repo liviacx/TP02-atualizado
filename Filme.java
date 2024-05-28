@@ -87,4 +87,8 @@ public class Filme implements Registro {
     public int compareTo(Object b) {
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+      return super.clone();
+    }
 }
