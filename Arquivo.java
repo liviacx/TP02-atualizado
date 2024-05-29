@@ -15,20 +15,22 @@ public class Arquivo<T extends Registro> {
         this.construtor = c;
 
         arquivo = new RandomAccessFile(filmes, "rw");
-        arquivo.setLength(0); // Limpa o conteúdo do arquivo
+        /*arquivo.setLength(0); // Limpa o conteúdo do arquivo
         if (arquivo.length() < TAM_CABECALHO) {
             arquivo.seek(0);
             arquivo.writeInt(0);
-        }
+        }*/
     }
 
     public int create(T obj) throws Exception {
         arquivo.seek(0);
         int ultimoID = arquivo.readInt();
+        //System.out.println(ultimoID);
         ultimoID++;
         arquivo.seek(0);
         arquivo.writeInt(ultimoID);
         obj.setId(ultimoID);
+       //s System.out.println(ultimoID);
 
         byte[] ba = obj.toByteArray();
         int tam = ba.length;
