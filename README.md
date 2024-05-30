@@ -4,7 +4,7 @@ Segundo trabalho prático da disciplina de Algoritmos e Estruturas de Dados III
 ## RELATÓRIO ##
 
 ### 1. Introdução ###
-
+    
 O trabalho consiste em implementar um sistema de busca por palavras em uma lista. Para isso, foi utilizado uma lista invertida, que é uma estrutura de dados que armazena, para cada
 palavra, uma lista de livros que contém essa palavra. A lista de livros é uma lista encadeada, onde cada termo possui um título e um identificador. A lista invertida é uma árvore AVL, onde cada nó possui uma palavra e uma lista.
 
@@ -14,7 +14,7 @@ Tivemos dificuldades ao implementar os métodos read e removeAcentos, mas conseg
 
 ### 3. Classes e Métodos ###  
 - ListaInvertida:
-    - ```java
+  - ```java
     public class ListaInvertida
     
     isStopWord(String word): Este método verifica se uma palavra é uma "stop word", ou seja, uma palavra comum que geralmente é filtrada em uma busca.  
@@ -32,7 +32,7 @@ Tivemos dificuldades ao implementar os métodos read e removeAcentos, mas conseg
     print(): Este método imprime todas as listas invertidas.
      
 - Main:
-    - ```java
+  - ```java
     public class Main
     
     main(String[] args): Este método é o método principal do programa, onde é feita a leitura dos arquivos de entrada e a execução das operações de inclusão, alteração, remoção e busca de livros.
@@ -48,4 +48,4 @@ Tivemos dificuldades ao implementar os métodos read e removeAcentos, mas conseg
 - Que modificação, se alguma, você fez para além dos requisitos mínimos desta tarefa? Criação de um método para remover acentos e caracteres especiais, além da criação de um arquivo contendo todas as stop words para facilitar o processo do trabalho.
 - O trabalho está funcionando corretamente? Sim, o trabalho está funcionando corretamente.
 - O trabalho está completo? Sim, o trabalho está completo.
-- O trabalho é original e não a cópia de um trabalho de um colega? Sim, o trabalho é original e não a cópia de um trabalho de um colega.
+- O trabalho é original e não a cópia de um trabalho de um colega? Sim, o trabalho é original e desenvolvido por Lívia Câmara, Sophia Carrazza e Yan Sabarense.
